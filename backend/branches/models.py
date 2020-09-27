@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Branch(models.Model):
+    objects = models.Manager()
 
     name = models.CharField(max_length=255)
     facade = models.ImageField(null=True, blank=True)
@@ -25,6 +26,7 @@ class Branch(models.Model):
 
 
 class Employee(models.Model):
+    objects = models.Manager()
 
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255, blank=True, null=True)

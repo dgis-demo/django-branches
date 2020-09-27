@@ -7,6 +7,6 @@ router.register('branch', views.BranchView)
 router.register('employee', views.EmployeeView)
 
 urlpatterns = [
-    path('closest_branch/', views.test_view),
-    path('', include(router.urls)),
+    path('closest_branch/', views.closest_branch, name='closest_branch'),
+    path('', include(router.urls), name='index_api'),
 ]

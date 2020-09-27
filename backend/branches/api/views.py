@@ -26,7 +26,7 @@ class EmployeeView(viewsets.ModelViewSet):
 
 
 @api_view(['GET'])
-def test_view(request):
+def closest_branch(request):
     params = request.query_params
     if 'lat' and 'lon' in params:
         if params['lat'] and params['lon']:
@@ -39,7 +39,7 @@ def test_view(request):
                 distance = target_point.distance(branch_point)
                 distances[distance] = branch.pk
             min_distance = min(distances.keys())
-            closest_branch = Branch.objects.get(pk=distances[min_distance]).to_json()
-            return Response(closest_branch, status=status.HTTP_200_OK)
+            nearest_branch = Branch.objects.get(pk=distances[min_distance]).to_json()
+            return Response(nearest_branch, status=status.HTTP_200_OK)
     else:
         return Response(status=status.HTTP_404_NOT_FOUND)
